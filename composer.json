@@ -1,0 +1,12 @@
+{
+    "name": "vendor/name",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Alexandru Butucea",
+            "email": "alexandru_2487@yahoo.com"
+        }
+    ],
+    "require": {}
+}
