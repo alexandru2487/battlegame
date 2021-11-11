@@ -8,15 +8,17 @@ abstract class Fighter{
     protected $defence;
     protected $speed;
     protected $luck;
+    protected $skills;
 
 
-    public function __construct(string $name, array $attr)
+    public function __construct(string $name, array $attr, array $skills)
     {   
         if (!$name) {
             throw new \Exception('Fighter name can not be empty!');
         }
         $this->setName($name);
         $this->configFighter($attr);
+        $this->setSkills($skills);
     }
 
     public function getName(){
@@ -65,6 +67,20 @@ abstract class Fighter{
 
     public function setLuck($luck){
         $this->luck = $luck;
+    }
+
+    public function getSkills(){
+        return $this->skills;
+    }
+
+    public function setSkills($skills){
+        $this->skills = $skills;
+    }
+    public function getMagicShield(){
+        return isset($this->getSkills()['magic_shield']) ? $this->getSkills()['magic_shield'] : 0;
+    }
+    public function getRapidStrike(){
+        return isset($this->getSkills()['rapid_strike']) ? $this->getSkills()['rapid_strike'] : 0;
     }
 
     protected function configFighter($attr = []){

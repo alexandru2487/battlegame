@@ -147,12 +147,21 @@ class Battle{
     public function manageRounds(){
         $this->getRoundDetails();
         $this->setDefenseHealth();
+        $rapid_random   = mt_rand(0,100);
+        $attacker_rapid_strike = $this->fighterOne->getRapidStrike();
+        if ($rapid_random <= $attacker_rapid_strike && $attacker_rapid_strike != 0) {
+            $this->setDefenseHealth();
+            echo $this->fighterOne->getName()." uses his rapid strike!</br>";
+        }
+        $this->getRoundDetailsAfter();
         $this->switchFighters();
     }
 
     public function setDefenseHealth(){
-        $luck = false;
-        $luck_random = mt_rand(0,100);
+        $luck           = false;
+        $luck_random    = mt_rand(0,100);
+        $magic_random   = mt_rand(0,100);
+
         if ($luck_random <= $this->fighterTwo->getLuck()) {
             $luck = true;
         }
@@ -161,6 +170,11 @@ class Battle{
             echo $this->fighterTwo->getName()." was lucky and his health is intact!</br>";
         }else{
             $damageFighter = $this->manageFighterDamage();
+        }
+        $defender_shield = $this->fighterTwo->getMagicShield();
+        if ($magic_random <= $defender_shield && $defender_shield != 0) {
+            $damageFighter = round($damageFighter/2);
+            echo $this->fighterTwo->getName()." uses his magic shield!</br>";
         }
 
         $new_health = $this->fighterTwo->getHealth() - $damageFighter;
@@ -186,8 +200,13 @@ class Battle{
 
     public function getRoundDetails(){
         echo '<b class="text-center">Round '.$this->battles."</b></br>";
-        echo "Attacker is ".$this->fighterOne->getName()."</br>";
-        echo "Defender is ".$this->fighterTwo->getName()."</br>";
+        echo "<div>Attacker is ".$this->fighterOne->getName()."(health: <b>".$this->fighterOne->getHealth()."</b>, defence: <b>".$this->fighterOne->getDefence()."</b>)"."</div>";
+        echo "<div>Defender is ".$this->fighterTwo->getName()."(health: <b>".$this->fighterTwo->getHealth()."</b>, defence: <b>".$this->fighterTwo->getDefence()."</b>)"."</div>";
+        echo "</br>";
+    }
+    public function getRoundDetailsAfter(){
+        echo "<div>".$this->fighterOne->getName()." has after fight health: <b>".$this->fighterOne->getHealth()."</b>, defence: <b>".$this->fighterOne->getDefence()."</b>"."</div>";
+        echo "<div>".$this->fighterTwo->getName()."has after fight health: <b>".$this->fighterTwo->getHealth()."</b>, defence: <b>".$this->fighterTwo->getDefence()."</b>"."</div>";
         echo "</br>";
     }
 }
