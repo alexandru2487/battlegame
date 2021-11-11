@@ -8,5 +8,10 @@
             "email": "alexandru_2487@yahoo.com"
         }
     ],
-    "require": {}
+    "require": {},
+    "autoload": {
+	    "psr-4": {
+	      "BattleGame\\":"app/"
+	    }
+    }
 }

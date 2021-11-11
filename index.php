@@ -16,11 +16,15 @@
         <p>Once upon a time there was a great hero, called Orderus, with some strengths and weaknesses, as all heroes have.</p>
         <p>As Orderus walks the ever-green forests of Emagia, he encounters some wild beasts.</p>
         <p>The battle begin.Who will be the winner?</p>
-    </div>
-    <?php
-        require 'vendor/autoload.php';
+        <div class="battle--details">
+            <?php
 
-        
-    ?>
+                use BattleGame\BattleInitialize;
+                require 'vendor/autoload.php';
+
+                BattleInitialize::initialize();
+            ?>
+        </div>
+    </div>
 </body>
 </html>
